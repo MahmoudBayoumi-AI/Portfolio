@@ -596,8 +596,10 @@ body::after {
 }
 
 .hero-image {
-  width: min(380px, 90vw);
-  height: 380px;
+  width: min(390px, 85vw);
+  height: min(390px, 85vw);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
   animation: modernFloat 6s ease-in-out infinite;
 }
 
@@ -2009,8 +2011,10 @@ html.js-ready .reveal.visible {
   }
   
   .hero-image {
-  width: min(380px, 90vw);
-  height: 380px;
+  width: min(390px, 85vw);
+  height: min(390px, 85vw);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
   animation: modernFloat 6s ease-in-out infinite;
 }
   .orbit-outer,
