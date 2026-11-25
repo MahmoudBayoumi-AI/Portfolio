@@ -2428,3 +2428,31 @@ html.menu-open body {
 
 /* keep the header from shifting sideways when the page scroll is locked */
 html { scrollbar-gutter: stable; }
+
+
+/* MOBILE: CV button sits in the header, next to the menu button */
+.cv-mobile { display: none; }
+
+@media (max-width: 1280px) {
+  html .navbar .cv-mobile {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 46px;
+    margin-inline-start: auto;
+    padding: 0 14px;
+    border-radius: 12px;
+    font-size: 13px;
+    white-space: nowrap;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  html .navbar .menu-toggle { margin-inline-start: 10px; }
+  html .nav-menu .nav-actions .cv-button { display: none; }
+}
+
+/* very small phones: icon only */
+@media (max-width: 380px) {
+  html .navbar .cv-mobile { width: 46px; padding: 0; justify-content: center; }
+  html .navbar .cv-mobile span { display: none; }
+}
