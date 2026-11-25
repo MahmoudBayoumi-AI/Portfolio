@@ -150,7 +150,7 @@ window.I18N = {
     "ui.formOk": "Thank you! Your message has been sent successfully.",
     "ui.langButton": "عربي",
     "ui.langTitle": "التبديل إلى العربية",
-    "ui.titles": ["Data Scientist", "Frontend Developer" , "Data Analyst", "ML Engineer", "Aviation Data Specialist"]
+    "ui.titles": ["Data Scientist", "Data Analyst", "ML Engineer", "Frontend Developer", "Aviation Data Specialist"]
   },
 
   ar: {
