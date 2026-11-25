@@ -26,10 +26,12 @@
         <span class="logo-text" data-i18n="logo">Mahmoud<small>Bayoumi</small></span>
       </a>
 
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navMenu">
         <i class="fa-solid fa-bars-staggered"></i>
       </button>
 
+      <!-- Mobile: this whole block becomes the slide-down menu (sections + language + theme + CV) -->
+      <div class="nav-menu" id="navMenu">
       <div class="nav-links" id="navLinks">
         <a class="nav-link active" href="#home" data-i18n="nav.home">Home</a>
         <a class="nav-link" href="#about" data-i18n="nav.about">About</a>
@@ -53,6 +55,7 @@
           <i class="fa-solid fa-cloud-arrow-down"></i><span data-i18n="nav.cv">Download CV</span>
         </a>
         <a class="nav-cta" href="#contact" data-i18n="nav.cta">Let's Talk <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
       </div>
     </nav>
   </header>

@@ -2315,3 +2315,116 @@ html[dir="rtl"] .project-category { direction: rtl; }
   font-weight: 700;
   color: var(--primary);
 }
+
+/* =============================================================
+   MOBILE NAVIGATION MENU (sections + language + theme + CV)
+============================================================= */
+.nav-menu { display: contents; }   /* desktop: children behave as before */
+
+html.menu-open,
+html.menu-open body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+@media (max-width: 960px) {
+  /* Big, easy to hit hamburger button */
+  html .menu-toggle {
+    display: grid;
+    place-items: center;
+    order: 0;
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    margin-inline-start: auto;
+    border-radius: 12px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    font-size: 20px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  html .menu-toggle i { pointer-events: none; }
+
+  /* The sheet that slides down under the header */
+  html .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: calc(100vh - 72px);
+    height: calc(100dvh - 72px);
+    flex-direction: column;
+    gap: 18px;
+    padding: 18px 20px 32px;
+    background: var(--bg);
+    border-top: 1px solid var(--card-border);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+  html .nav-menu.open {
+    display: flex;
+    animation: fadeInDown 0.25s ease forwards;
+  }
+
+  html .nav-menu .nav-links {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    padding: 0;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    animation: none;
+  }
+  html .nav-menu .nav-link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 15px 18px;
+    border-radius: 14px;
+    font-size: 16px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html .nav-menu .nav-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0;
+    padding-top: 18px;
+    border-top: 1px solid var(--card-border);
+  }
+  html .nav-menu .lang-toggle,
+  html .nav-menu .theme-toggle {
+    flex: 1 1 calc(50% - 5px);
+    width: auto;
+    height: 52px;
+    border-radius: 14px;
+    font-size: 17px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  html .nav-menu .cv-button {
+    flex: 1 1 100%;
+    justify-content: center;
+    padding: 15px 18px;
+    border-radius: 14px;
+    font-size: 14px;
+  }
+  html .nav-menu .nav-cta { display: none; }
+
+  /* Header keeps only logo + button */
+  html .navbar { gap: 12px; }
+}
+
+/* keep the header from shifting sideways when the page scroll is locked */
+html { scrollbar-gutter: stable; }

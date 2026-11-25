@@ -112,34 +112,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* -------------------------------------------------------------
      4. Mobile Navigation Menu
+     - one tap opens / closes (the icon element is never replaced, so the
+       "click outside" check can no longer close the menu by mistake)
+     - page behind the open menu cannot be scrolled
   ------------------------------------------------------------- */
   const menuToggle = $('#menuToggle');
-  const navLinks = $('#navLinks');
+  const navMenu = $('#navMenu');
+  const rootEl = document.documentElement;
 
-  if (menuToggle && navLinks) {
+  function setMenu(open) {
+    if (!menuToggle || !navMenu) return;
+    navMenu.classList.toggle('open', open);
+    rootEl.classList.toggle('menu-open', open);
+    menuToggle.setAttribute('aria-expanded', String(open));
+    const icon = menuToggle.querySelector('i');
+    if (icon) icon.className = open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars-staggered';
+  }
+
+  if (menuToggle && navMenu) {
     menuToggle.addEventListener('click', () => {
-      const isOpened = navLinks.classList.toggle('open');
-      menuToggle.setAttribute('aria-expanded', String(isOpened));
-      menuToggle.innerHTML = isOpened 
-        ? '<i class="fa-solid fa-xmark"></i>' 
-        : '<i class="fa-solid fa-bars-staggered"></i>';
+      setMenu(!navMenu.classList.contains('open'));
     });
 
-    $$('.nav-link', navLinks).forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.innerHTML = '<i class="fa-solid fa-bars-staggered"></i>';
-      });
+    // choosing a section (or tapping the logo) closes the menu
+    $$('.nav-link', navMenu).forEach(link => {
+      link.addEventListener('click', () => setMenu(false));
+    });
+    const logoLink = $('.logo');
+    if (logoLink) logoLink.addEventListener('click', () => setMenu(false));
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') setMenu(false);
     });
 
-    document.addEventListener('click', e => {
-      if (!navLinks.contains(e.target) && !menuToggle.contains(e.target) && navLinks.classList.contains('open')) {
-        navLinks.classList.remove('open');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.innerHTML = '<i class="fa-solid fa-bars-staggered"></i>';
-      }
-    });
+    // leaving the mobile layout (rotate / resize) closes the menu
+    const desktopQuery = window.matchMedia('(min-width: 961px)');
+    const onLayoutChange = e => { if (e.matches) setMenu(false); };
+    if (desktopQuery.addEventListener) desktopQuery.addEventListener('change', onLayoutChange);
+    else if (desktopQuery.addListener) desktopQuery.addListener(onLayoutChange);
+
+    // keep the page still while the menu is open (older iOS ignores overflow:hidden)
+    document.addEventListener('touchmove', e => {
+      if (!navMenu.classList.contains('open')) return;
+      const menuScrolls = navMenu.scrollHeight > navMenu.clientHeight;
+      if (navMenu.contains(e.target) && menuScrolls) return;
+      e.preventDefault();
+    }, { passive: false });
   }
 
   /* -------------------------------------------------------------
