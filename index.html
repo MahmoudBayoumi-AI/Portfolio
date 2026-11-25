@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -22,7 +23,7 @@
     <nav class="navbar container" aria-label="Primary navigation">
       <a class="logo" href="#home">
         <span class="logo-box">MB</span>
-        <span class="logo-text">Mahmoud<small>Bayoumi</small></span>
+        <span class="logo-text" data-i18n="logo">Mahmoud<small>Bayoumi</small></span>
       </a>
 
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
@@ -30,27 +31,28 @@
       </button>
 
       <div class="nav-links" id="navLinks">
-        <a class="nav-link active" href="#home">Home</a>
-        <a class="nav-link" href="#about">About</a>
-        <a class="nav-link" href="#education">Education</a>
-        <a class="nav-link" href="#experience">Experience</a>
-        <a class="nav-link" href="#skills">Skills</a>
-        <a class="nav-link" href="#projects">Projects</a>
-        <a class="nav-link" href="#services">Services</a>
-        <a class="nav-link" href="#testimonials">Testimonials</a>
-        <a class="nav-link" href="#contact">Contact</a>
+        <a class="nav-link active" href="#home" data-i18n="nav.home">Home</a>
+        <a class="nav-link" href="#about" data-i18n="nav.about">About</a>
+        <a class="nav-link" href="#education" data-i18n="nav.education">Education</a>
+        <a class="nav-link" href="#experience" data-i18n="nav.experience">Experience</a>
+        <a class="nav-link" href="#skills" data-i18n="nav.skills">Skills</a>
+        <a class="nav-link" href="#projects" data-i18n="nav.projects">Projects</a>
+        <a class="nav-link" href="#services" data-i18n="nav.services">Services</a>
+        <a class="nav-link" href="#contact" data-i18n="nav.contact">Contact</a>
       </div>
 
       <div class="nav-actions">
+        <!-- Language Toggle (English / Arabic) -->
+        <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language" title="التبديل إلى العربية" lang="ar">عربي</button>
         <!-- Theme Toggle Button (Light/Dark Mode) -->
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Switch Theme">
           <i class="fa-solid fa-sun icon-sun"></i>
           <i class="fa-solid fa-moon icon-moon"></i>
         </button>
         <a class="cv-button" href="assets/Mahmoud-Bayoumi-CV.pdf" target="_blank" rel="noopener noreferrer">
-          <i class="fa-solid fa-cloud-arrow-down"></i><span>Download CV</span>
+          <i class="fa-solid fa-cloud-arrow-down"></i><span data-i18n="nav.cv">Download CV</span>
         </a>
-        <a class="nav-cta" href="#contact">Let's Talk <i class="fa-solid fa-arrow-right"></i></a>
+        <a class="nav-cta" href="#contact" data-i18n="nav.cta">Let's Talk <i class="fa-solid fa-arrow-right"></i></a>
       </div>
     </nav>
   </header>
@@ -64,11 +66,11 @@
           <div class="hero-content reveal">
             <div class="eyebrow">
               <span class="pulse-dot"></span>
-              <span>Open to Opportunities &amp; Collaborations</span>
+              <span data-i18n="hero.eyebrow">Open to Opportunities &amp; Collaborations</span>
             </div>
 
-            <p class="mini-title">Hello, I am</p>
-            <h1 class="hero-title">
+            <p class="mini-title" data-i18n="hero.hello">Hello, I am</p>
+            <h1 class="hero-title" data-i18n="hero.name">
               Mahmoud <span class="text-gradient">Bayoumi</span>
             </h1>
 
@@ -81,17 +83,17 @@
               </div>
             </div>
 
-            <p class="hero-text">
+            <p class="hero-text" data-i18n="hero.text">
               Data Scientist combining aviation information systems expertise with end-to-end predictive modeling, machine learning, and business intelligence. Transforming complex datasets into actionable, high-impact strategies.
             </p>
 
             <div class="hero-actions">
               <a class="btn btn-primary" href="#projects">
-                <span>Explore Featured Work</span>
+                <span data-i18n="hero.btn1">Explore Featured Work</span>
                 <i class="fa-solid fa-arrow-trend-up"></i>
               </a>
               <a class="btn btn-outline" href="#contact">
-                <span>Get In Touch</span>
+                <span data-i18n="hero.btn2">Get In Touch</span>
                 <i class="fa-regular fa-paper-plane"></i>
               </a>
             </div>
@@ -111,10 +113,10 @@
             <div class="orbit-sparkle sparkle-2"></div>
             
             <div class="image-frame hero-image">
-              <img src="assets/images/profile-home.jpg" alt="Mahmoud Bayoumi" onerror="this.style.display='none';this.parentElement.classList.add('image-missing');" />
+              <img src="assets/images/profile-home.jpg" alt="Mahmoud Bayoumi" data-i18n-alt="alt.home" onerror="this.style.display='none';this.parentElement.classList.add('image-missing');" />
               <div class="image-placeholder">
                 <i class="fa-solid fa-user-astronaut"></i>
-                <span>Add your photo here</span>
+                <span data-i18n="photo.placeholder">Add your photo here</span>
               </div>
             </div>
 
@@ -122,7 +124,7 @@
               <div class="badge-icon"><i class="fa-solid fa-brain"></i></div>
               <div class="badge-text">
                 <strong>90%+</strong>
-                <small>Model Accuracy</small>
+                <small data-i18n="badge.accuracy">Model Accuracy</small>
               </div>
             </div>
 
@@ -130,7 +132,7 @@
               <div class="badge-icon"><i class="fa-solid fa-plane-departure"></i></div>
               <div class="badge-text">
                 <strong>8,524+</strong>
-                <small>Records Processed</small>
+                <small data-i18n="badge.records">Records Processed</small>
               </div>
             </div>
           </div>
@@ -141,19 +143,19 @@
         <div class="stats-card reveal">
           <div class="stat-item">
             <div class="stat-value"><strong class="counter" data-target="90">0</strong><span class="symbol">%+</span></div>
-            <small>Model Accuracy</small>
+            <small data-i18n="badge.accuracy">Model Accuracy</small>
           </div>
           <div class="stat-item">
             <div class="stat-value"><strong class="counter" data-target="8524">0</strong><span class="symbol">+</span></div>
-            <small>Records Analyzed</small>
+            <small data-i18n="stats.records">Records Analyzed</small>
           </div>
           <div class="stat-item">
-            <div class="stat-value"><strong class="counter" data-target="5">0</strong><span class="symbol">+</span></div>
-            <small>End-to-End Projects</small>
+            <div class="stat-value"><strong class="counter" data-target="6">0</strong><span class="symbol">+</span></div>
+            <small data-i18n="stats.projects">End-to-End Projects</small>
           </div>
           <div class="stat-item">
             <div class="stat-value"><strong class="counter" data-target="2">0</strong><span class="symbol"></span></div>
-            <small>Core Domains (Aviation &amp; AI)</small>
+            <small data-i18n="stats.domains">Core Domains (Aviation &amp; AI)</small>
           </div>
         </div>
       </div>
@@ -164,10 +166,10 @@
       <div class="container about-grid">
         <div class="about-visual reveal">
           <div class="image-frame about-image">
-            <img src="assets/images/profile-about.jpg" alt="Mahmoud Bayoumi at work" onerror="this.style.display='none';this.parentElement.classList.add('image-missing');" />
+            <img src="assets/images/profile-about.jpg" alt="Mahmoud Bayoumi at work" data-i18n-alt="alt.about" onerror="this.style.display='none';this.parentElement.classList.add('image-missing');" />
             <div class="image-placeholder">
               <i class="fa-solid fa-terminal"></i>
-              <span>Add your photo here</span>
+              <span data-i18n="photo.placeholder">Add your photo here</span>
             </div>
           </div>
           <!-- Positioned cleanly in foreground with ample clearance -->
@@ -175,22 +177,22 @@
             <div class="exp-icon"><i class="fa-solid fa-award"></i></div>
             <div class="exp-content">
               <div class="exp-number">01</div>
-              <div class="exp-text">Bridging <strong>Aviation Systems</strong> &amp; Modern <strong>Machine Learning</strong></div>
+              <div class="exp-text" data-i18n="about.card">Bridging <strong>Aviation Systems</strong> &amp; Modern <strong data-i18n="skills.c4">Machine Learning</strong></div>
             </div>
           </div>
         </div>
 
         <div class="about-content reveal">
-          <p class="section-label">About Me</p>
-          <h2 class="section-title">Engineering insight<br /><span class="text-gradient">from every dataset.</span></h2>
-          <p>Aviation Information Systems graduate from Zagazig National University with hands-on experience in data science, machine learning, and business intelligence. Proficient in Python, SQL, Power BI, and advanced analytics, with a proven track record of building end-to-end solutions.</p>
-          <p>Experienced in aviation operations through practical training at Dream Liner Aviation Services Consultancy, NANSC, and the Egyptian Space Agency. I combine domain expertise with technical rigor to solve real-world challenges.</p>
+          <p class="section-label" data-i18n="about.label">About Me</p>
+          <h2 class="section-title" data-i18n="about.title">Engineering insight<br /><span class="text-gradient">from every dataset.</span></h2>
+          <p data-i18n="about.p1">Aviation Information Systems graduate from Zagazig National University with hands-on experience in data science, machine learning, and business intelligence. Proficient in Python, SQL, Power BI, and advanced analytics, with a proven track record of building end-to-end solutions.</p>
+          <p data-i18n="about.p2">Experienced in aviation operations through practical training at Dream Liner Aviation Services Consultancy, NANSC, and the Egyptian Space Agency. I combine domain expertise with technical rigor to solve real-world challenges.</p>
           
           <div class="highlight-grid">
-            <div class="highlight-item"><i class="fa-solid fa-plane-up"></i><span>Aviation Information Systems</span></div>
-            <div class="highlight-item"><i class="fa-solid fa-microchip"></i><span>End-to-End ML Solutions</span></div>
-            <div class="highlight-item"><i class="fa-solid fa-chart-pie"></i><span>Business Intelligence &amp; DAX</span></div>
-            <div class="highlight-item"><i class="fa-solid fa-network-wired"></i><span>Data Pipelines &amp; Engineering</span></div>
+            <div class="highlight-item"><i class="fa-solid fa-plane-up"></i><span data-i18n="about.h1">Aviation Information Systems</span></div>
+            <div class="highlight-item"><i class="fa-solid fa-microchip"></i><span data-i18n="about.h2">End-to-End ML Solutions</span></div>
+            <div class="highlight-item"><i class="fa-solid fa-chart-pie"></i><span data-i18n="about.h3">Business Intelligence &amp; DAX</span></div>
+            <div class="highlight-item"><i class="fa-solid fa-network-wired"></i><span data-i18n="about.h4">Data Pipelines &amp; Engineering</span></div>
           </div>
         </div>
       </div>
@@ -200,20 +202,20 @@
     <section class="section section-muted" id="education">
       <div class="container">
         <div class="section-heading reveal">
-          <p class="section-label">Education</p>
-          <h2 class="section-title">Academic <span class="text-gradient">Foundation.</span></h2>
+          <p class="section-label" data-i18n="nav.education">Education</p>
+          <h2 class="section-title" data-i18n="edu.title">Academic <span class="text-gradient">Foundation.</span></h2>
         </div>
 
         <div class="education-card reveal">
           <div class="education-icon"><i class="fa-solid fa-graduation-cap"></i></div>
           <div class="education-main">
-            <span class="date-pill"><i class="fa-regular fa-clock"></i>10/2022 — 07/2026</span>
-            <h3>Bachelor of Science in Aviation Information Systems</h3>
-            <p class="school-name">Faculty of Computers and Information · Zagazig National University (ZNU)</p>
+            <span class="date-pill"><i class="fa-regular fa-clock"></i> 10/2022 — 07/2026 </span>
+            <h3 data-i18n="edu.degree">Bachelor of Science in Aviation Information Systems</h3>
+            <p class="school-name" data-i18n="edu.school">Faculty of Computers and Information · Zagazig National University (ZNU)</p>
             <div class="education-meta">
-              <span><i class="fa-solid fa-award"></i> GPA: 3.70 / 4.00</span>
-              <span><i class="fa-solid fa-location-dot"></i> Egypt</span>
-              <span><i class="fa-solid fa-calendar-check"></i> Graduation: July 2026</span>
+              <span data-i18n="edu.gpa"><i class="fa-solid fa-award"></i> GPA: 3.70 / 4.00</span>
+              <span data-i18n="edu.country"><i class="fa-solid fa-location-dot"></i> Egypt</span>
+              <span data-i18n="edu.grad"><i class="fa-solid fa-calendar-check"></i> Graduation: July 2026</span>
             </div>
           </div>
         </div>
@@ -224,8 +226,8 @@
     <section class="section" id="experience">
       <div class="container">
         <div class="section-heading reveal">
-          <p class="section-label">Career Path</p>
-          <h2 class="section-title">Experience &amp; <span class="text-gradient">Milestones.</span></h2>
+          <p class="section-label" data-i18n="exp.label">Career Path</p>
+          <h2 class="section-title" data-i18n="exp.title">Experience &amp; <span class="text-gradient">Milestones.</span></h2>
         </div>
 
         <div class="timeline">
@@ -234,16 +236,16 @@
             <div class="timeline-card">
               <div class="timeline-top">
                 <div>
-                  <h3>Artificial Inteligence (AI) Trainee</h3>
-                  <h4>Instant Academy</h4>
+                  <h3 data-i18n="exp1.role">Artificial Intelligence (AI) Trainee</h3>
+                  <h4 data-i18n="exp1.org">Instant Academy</h4>
                 </div>
-                <span class="date-pill">07/2025 — 7/2026</span>
+                <span class="date-pill" data-i18n="exp.present">07/2025 — Present</span>
               </div>
-              <p class="location"><i class="fa-solid fa-laptop-code"></i> Remote / Online</p>
+              <p class="location" data-i18n="exp1.loc"><i class="fa-solid fa-laptop-code"></i> Remote / Online</p>
               <ul>
-                <li>Analyzed datasets exceeding 10,000 rows using Python, Pandas, NumPy, and Excel.</li>
-                <li>Built Power BI dashboards, SQL Server databases, web scraping tools, and ETL workflows.</li>
-                <li>Applied statistical testing, ensemble methods, clustering, neural networks, transfer learning, Streamlit, and Hugging Face APIs.</li>
+                <li data-i18n="exp1.l1">Analyzed datasets exceeding 10,000 rows using Python, Pandas, NumPy, and Excel.</li>
+                <li data-i18n="exp1.l2">Built Power BI dashboards, SQL Server databases, web scraping tools, and ETL workflows.</li>
+                <li data-i18n="exp1.l3">Applied statistical testing, ensemble methods, clustering, neural networks, transfer learning, Streamlit, and Hugging Face APIs.</li>
               </ul>
             </div>
           </article>
@@ -253,16 +255,16 @@
             <div class="timeline-card">
               <div class="timeline-top">
                 <div>
-                  <h3>Business Analyst Intern</h3>
-                  <h4>Dream Liner Aviation Services Consultancy</h4>
+                  <h3 data-i18n="exp2.role">Business Analyst Intern</h3>
+                  <h4 data-i18n="exp2.org">Dream Liner Aviation Services Consultancy</h4>
                 </div>
                 <span class="date-pill">08/2025 — 09/2025</span>
               </div>
-              <p class="location"><i class="fa-solid fa-building"></i> Cairo, Egypt · Hybrid</p>
+              <p class="location" data-i18n="exp2.loc"><i class="fa-solid fa-building"></i> Cairo, Egypt · Hybrid</p>
               <ul>
-                <li>Developed a Streamlit and Selenium application automating aviation market research workflows.</li>
-                <li>Designed Power BI dashboards profiling airline fleets and stakeholder contacts.</li>
-                <li>Delivered structured reports for C-Suite planning and ACMI opportunity analysis.</li>
+                <li data-i18n="exp2.l1">Developed a Streamlit and Selenium application automating aviation market research workflows.</li>
+                <li data-i18n="exp2.l2">Designed Power BI dashboards profiling airline fleets and stakeholder contacts.</li>
+                <li data-i18n="exp2.l3">Delivered structured reports for C-Suite planning and ACMI opportunity analysis.</li>
               </ul>
             </div>
           </article>
@@ -272,16 +274,16 @@
             <div class="timeline-card">
               <div class="timeline-top">
                 <div>
-                  <h3>Data Science &amp; Machine Learning Trainee</h3>
-                  <h4>Digital Egypt Pioneers Initiative (DEPI)</h4>
+                  <h3 data-i18n="exp3.role">Data Science &amp; Machine Learning Trainee</h3>
+                  <h4 data-i18n="exp3.org">Digital Egypt Pioneers Initiative (DEPI)</h4>
                 </div>
                 <span class="date-pill">10/2024 — 05/2025</span>
               </div>
-              <p class="location"><i class="fa-solid fa-graduation-cap"></i> Zagazig, Sharqia · Hybrid</p>
+              <p class="location" data-i18n="exp3.loc"><i class="fa-solid fa-graduation-cap"></i> Zagazig, Sharqia · Hybrid</p>
               <ul>
-                <li>Completed an intensive 6-month program in Python, Power BI, and predictive modeling.</li>
-                <li>Engineered a sales forecasting system using 8,524 records and evaluated five ML algorithms.</li>
-                <li>Deployed the full predictive solution with Streamlit and MLflow integration.</li>
+                <li data-i18n="exp3.l1">Completed an intensive 6-month program in Python, Power BI, and predictive modeling.</li>
+                <li data-i18n="exp3.l2">Engineered a sales forecasting system using 8,524 records and evaluated five ML algorithms.</li>
+                <li data-i18n="exp3.l3">Deployed the full predictive solution with Streamlit and MLflow integration.</li>
               </ul>
             </div>
           </article>
@@ -291,15 +293,15 @@
             <div class="timeline-card">
               <div class="timeline-top">
                 <div>
-                  <h3>Aviation Operations Intern</h3>
-                  <h4>National Air Navigation Services Company (NANSC)</h4>
+                  <h3 data-i18n="exp4.role">Aviation Operations Intern</h3>
+                  <h4 data-i18n="exp4.org">National Air Navigation Services Company (NANSC)</h4>
                 </div>
-                <span class="date-pill">02/2025</span>
+                <span class="date-pill">02/2025 — 03/2025</span>
               </div>
-              <p class="location"><i class="fa-solid fa-plane-arrival"></i> Cairo International Airport</p>
+              <p class="location" data-i18n="exp4.loc"><i class="fa-solid fa-plane-arrival"></i> Cairo International Airport</p>
               <ul>
-                <li>Trained in aviation operations, navigation systems, airport management, and air traffic control.</li>
-                <li>Participated in field visits to control tower and area control facilities.</li>
+                <li data-i18n="exp4.l1">Trained in aviation operations, navigation systems, airport management, and air traffic control.</li>
+                <li data-i18n="exp4.l2">Participated in field visits to control tower and area control facilities.</li>
               </ul>
             </div>
           </article>
@@ -309,14 +311,14 @@
             <div class="timeline-card">
               <div class="timeline-top">
                 <div>
-                  <h3>Space Technology Trainee</h3>
-                  <h4>Egyptian Space Agency (EgSA)</h4>
+                  <h3 data-i18n="exp5.role">Space Technology Trainee</h3>
+                  <h4 data-i18n="exp5.org">Egyptian Space Agency (EgSA)</h4>
                 </div>
-                <span class="date-pill">09/2024</span>
+                <span class="date-pill">09/2024 — 10/2024</span>
               </div>
-              <p class="location"><i class="fa-solid fa-satellite-dish"></i> New Cairo, Cairo</p>
+              <p class="location" data-i18n="exp5.loc"><i class="fa-solid fa-satellite-dish"></i> New Cairo, Cairo</p>
               <ul>
-                <li>Completed practical training in satellite systems, space technology applications, and aerospace operations.</li>
+                <li data-i18n="exp5.l1">Completed practical training in satellite systems, space technology applications, and aerospace operations.</li>
               </ul>
             </div>
           </article>
@@ -328,25 +330,25 @@
     <section class="section section-muted" id="skills">
       <div class="container">
         <div class="section-heading reveal">
-          <p class="section-label">Skills &amp; Toolkit</p>
-          <h2 class="section-title">Technologies behind <br /><span class="text-gradient">the intelligent systems.</span></h2>
+          <p class="section-label" data-i18n="skills.label">Skills &amp; Toolkit</p>
+          <h2 class="section-title" data-i18n="skills.title">Technologies behind <br /><span class="text-gradient">the intelligent systems.</span></h2>
         </div>
 
         <div class="skills-grid">
           <div class="skill-card reveal">
             <div class="skill-header">
               <i class="fa-solid fa-code skill-icon"></i>
-              <h3>Programming &amp; Architecture</h3>
+              <h3 data-i18n="skills.c1">Programming &amp; Architecture</h3>
             </div>
             <div class="tags">
-              <span>Python</span><span>OOP</span><span>Algorithms</span><span>Django</span><span>Git</span><span>GitHub</span>
+              <span>Python</span><span>OOP</span><span>Algorithms</span><span>Django</span><span>Git</span><span data-i18n="proj.gh">GitHub</span>
             </div>
           </div>
 
           <div class="skill-card reveal">
             <div class="skill-header">
               <i class="fa-solid fa-database skill-icon"></i>
-              <h3>Data Engineering &amp; ETL</h3>
+              <h3 data-i18n="skills.c2">Data Engineering &amp; ETL</h3>
             </div>
             <div class="tags">
               <span>SQL</span><span>MySQL</span><span>SQL Server</span><span>ETL</span><span>Selenium</span><span>Web Scraping</span>
@@ -356,7 +358,7 @@
           <div class="skill-card reveal">
             <div class="skill-header">
               <i class="fa-solid fa-chart-column skill-icon"></i>
-              <h3>BI &amp; Visualization</h3>
+              <h3 data-i18n="skills.c3">BI &amp; Visualization</h3>
             </div>
             <div class="tags">
               <span>Power BI</span><span>DAX</span><span>Power Query</span><span>Excel</span><span>EDA</span><span>Plotly</span>
@@ -366,7 +368,7 @@
           <div class="skill-card reveal">
             <div class="skill-header">
               <i class="fa-solid fa-robot skill-icon"></i>
-              <h3>Machine Learning</h3>
+              <h3 data-i18n="skills.c4">Machine Learning</h3>
             </div>
             <div class="tags">
               <span>Random Forest</span><span>XGBoost</span><span>CatBoost</span><span>Clustering</span><span>Time Series</span><span>MLflow</span>
@@ -376,7 +378,7 @@
           <div class="skill-card reveal">
             <div class="skill-header">
               <i class="fa-solid fa-network-wired skill-icon"></i>
-              <h3>Deep Learning &amp; CV</h3>
+              <h3 data-i18n="skills.c5">Deep Learning &amp; CV</h3>
             </div>
             <div class="tags">
               <span>ANN</span><span>CNN</span><span>RNN/LSTM</span><span>ResNet</span><span>YOLO</span><span>TensorFlow</span>
@@ -386,10 +388,20 @@
           <div class="skill-card reveal">
             <div class="skill-header">
               <i class="fa-solid fa-jet-fighter-up skill-icon"></i>
-              <h3>Aviation Systems Domain</h3>
+              <h3 data-i18n="skills.c6">Aviation Systems Domain</h3>
             </div>
             <div class="tags">
               <span>AIS</span><span>ATC Operations</span><span>Satellite Systems</span><span>Aerospace</span><span>Fleet Analysis</span>
+            </div>
+          </div>
+
+          <div class="skill-card wide reveal">
+            <div class="skill-header">
+              <i class="fa-solid fa-display skill-icon"></i>
+              <h3 data-i18n="skills.c7">Frontend &amp; Web Development</h3>
+            </div>
+            <div class="tags">
+              <span>HTML5</span><span>CSS3</span><span>Vanilla JavaScript</span><span>WordPress</span><span>PHP</span><span>Responsive Design</span><span>RTL / LTR</span><span>Bilingual (AR/EN)</span><span>SEO &amp; Schema</span>
             </div>
           </div>
         </div>
@@ -400,8 +412,8 @@
     <section class="section" id="projects">
       <div class="container">
         <div class="section-heading reveal">
-          <p class="section-label">Featured Work</p>
-          <h2 class="section-title">Projects that drive <br /><span class="text-gradient">real impact.</span></h2>
+          <p class="section-label" data-i18n="proj.label">Featured Work</p>
+          <h2 class="section-title" data-i18n="proj.title">Projects that drive <br /><span class="text-gradient">real impact.</span></h2>
         </div>
 
         <div class="projects-grid">
@@ -409,45 +421,89 @@
             <div class="project-number">01</div>
             <div class="project-icon"><i class="fa-solid fa-heart-pulse"></i></div>
             <span class="project-date">06/2025 — 07/2025</span>
-            <h3>Heart Disease Prediction System</h3>
-            <p>Evaluated seven classification algorithms, achieving 90.16% accuracy using Naive Bayes. Built and deployed an interactive prediction web app via Streamlit with full MLflow tracking.</p>
+            <h3 data-i18n="proj1.t">Heart Disease Prediction System</h3>
+            <p data-i18n="proj1.p">Evaluated seven classification algorithms, achieving 90.16% accuracy using Naive Bayes. Built and deployed an interactive prediction web app via Streamlit with full MLflow tracking.</p>
             <div class="tags"><span>Python</span><span>Scikit-learn</span><span>Streamlit</span><span>MLflow</span></div>
+            <div class="project-links compact">
+              <a class="project-link primary" href="https://heart-disease-prediction-app14.streamlit.app/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i><span data-i18n="proj.demo">Live Demo</span></a>
+              <a class="project-link" href="https://github.com/MahmoudBayoumi-AI/heart-disease-prediction-app" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i><span data-i18n="proj.gh">GitHub</span></a>
+            </div>
           </article>
 
           <article class="project-card reveal">
             <div class="project-number">02</div>
             <div class="project-icon"><i class="fa-solid fa-plane-departure"></i></div>
             <span class="project-date">03/2025 — 05/2025</span>
-            <h3>Flight Analysis &amp; Delay Prediction</h3>
-            <p>Architected a SQL Server database with high-volume BULK INSERT pipelines, cleaning flight metrics and presenting root causes of delay on an executive Power BI dashboard.</p>
+            <h3 data-i18n="proj2.t">Flight Analysis &amp; Delay Prediction</h3>
+            <p data-i18n="proj2.p">Architected a SQL Server database with high-volume BULK INSERT pipelines, cleaning flight metrics and presenting root causes of delay on an executive Power BI dashboard.</p>
             <div class="tags"><span>SQL Server</span><span>Power BI</span><span>Python</span><span>BULK INSERT</span></div>
+            <div class="project-links compact">
+              <a class="project-link primary" href="https://drive.google.com/file/d/13WA7LaBL0r1ZVXQ0uItVNf9tPcX7KWj4/view?usp=sharing" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-pdf"></i><span data-i18n="proj.pdf">Dashboard (PDF)</span></a>
+              <a class="project-link" href="https://github.com/MahmoudBayoumi-AI/Flight-Analysis-and-Delay-Prediction" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i><span data-i18n="proj.gh">GitHub</span></a>
+            </div>
           </article>
 
           <article class="project-card reveal">
             <div class="project-number">03</div>
             <div class="project-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
             <span class="project-date">02/2025 — 04/2025</span>
-            <h3>Sales Forecasting &amp; Optimization</h3>
-            <p>Constructed an advanced time-series predictive model based on 8,524 records and 18 attributes, evaluating XGBoost, CatBoost, and Random Forest pipelines.</p>
+            <h3 data-i18n="proj3.t">Sales Forecasting &amp; Optimization</h3>
+            <p data-i18n="proj3.p">Constructed an advanced time-series predictive model based on 8,524 records and 18 attributes, evaluating XGBoost, CatBoost, and Random Forest pipelines.</p>
             <div class="tags"><span>Forecasting</span><span>XGBoost</span><span>CatBoost</span><span>MLflow</span></div>
+            <div class="project-links compact">
+              <a class="project-link primary" href="https://sales-forecasting-and-optimization.streamlit.app/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i><span data-i18n="proj.demo">Live Demo</span></a>
+              <a class="project-link" href="https://github.com/MahmoudBayoumi-AI/Sales-Forecasting-and-Optimization" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i><span data-i18n="proj.gh">GitHub</span></a>
+            </div>
           </article>
 
           <article class="project-card reveal">
             <div class="project-number">04</div>
             <div class="project-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-            <span class="project-date">02/2025</span>
-            <h3>SuperMarket Sales Intelligence</h3>
-            <p>Designed a multi-branch business intelligence dashboard analyzing customer buying behaviour, inventory turnaround, and profit margins across regional branches.</p>
+            <span class="project-date">02/2025 — 03/2025</span>
+            <h3 data-i18n="proj4.t">SuperMarket Sales Intelligence</h3>
+            <p data-i18n="proj4.p">Designed a multi-branch business intelligence dashboard analyzing customer buying behaviour, inventory turnaround, and profit margins across regional branches.</p>
             <div class="tags"><span>Power BI</span><span>Python</span><span>DAX</span></div>
+            <div class="project-links compact">
+              <a class="project-link" href="https://github.com/MahmoudBayoumi-AI/Supermarket-Sales-Analysis-" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i><span data-i18n="proj.gh">GitHub</span></a>
+            </div>
           </article>
 
           <article class="project-card reveal">
             <div class="project-number">05</div>
             <div class="project-icon"><i class="fa-solid fa-book-bookmark"></i></div>
             <span class="project-date">04/2024 — 06/2024</span>
-            <h3>E-Book Library System Architecture</h3>
-            <p>Designed a fully normalized MySQL database schema with relational foreign constraints, tracking user transactions, book ratings, and reading histories.</p>
+            <h3 data-i18n="proj5.t">E-Book Library System Architecture</h3>
+            <p data-i18n="proj5.p">Designed a fully normalized MySQL database schema with relational foreign constraints, tracking user transactions, book ratings, and reading histories.</p>
             <div class="tags"><span>MySQL</span><span>Database Architecture</span><span>SQL</span></div>
+            <div class="project-links compact">
+              <a class="project-link" href="https://github.com/MahmoudBayoumi-AI/E-Book-Libary" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i><span data-i18n="proj.gh">GitHub</span></a>
+            </div>
+          </article>
+
+          <article class="project-card wide reveal">
+            <div class="project-main">
+              <div class="project-number">06</div>
+              <div class="project-icon"><i class="fa-brands fa-wordpress"></i></div>
+              <span class="project-date">11/2026 — 12/2026</span>
+              <span class="project-category" data-i18n="proj6.cat">Web Development · Custom WordPress Theme</span>
+              <h3 data-i18n="proj6.t">PENTA SERVE KSA — Custom WordPress Theme</h3>
+              <p data-i18n="proj6.p">A custom, lightweight, and fully responsive bilingual (Arabic/English) WordPress theme built from scratch without page builders for PENTA SERVE KSA, a commercial refrigeration and cold storage solutions provider in Saudi Arabia.</p>
+              <div class="project-meta" data-i18n="proj6.role"><i class="fa-solid fa-user-gear"></i> Role: Full-Stack / Custom WordPress &amp; Frontend Developer</div>
+              <div class="tags"><span>WordPress</span><span>PHP</span><span>CSS3</span><span>Vanilla JavaScript</span><span>Bilingual (AR/EN)</span><span>RTL/LTR</span><span>Custom SEO</span></div>
+              <div class="project-links">
+                <a class="project-link primary" href="https://pentaserveksa.com/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i><span data-i18n="proj6.live">Live Website</span></a>
+                <a class="project-link" href="https://github.com/MahmoudBayoumi-AI/penta-serve-wordpress-theme" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i><span data-i18n="proj6.repo">GitHub Repository</span></a>
+              </div>
+            </div>
+            <div class="project-details">
+              <h4 data-i18n="proj6.hl">Key Highlights</h4>
+              <ul>
+                <li data-i18n="proj6.h1"><strong>Bilingual Architecture (AR/EN):</strong> Engineered a native multi-language system (ar.php &amp; en.php) with seamless RTL and LTR layout switching.</li>
+                <li data-i18n="proj6.h2"><strong>Zero Page-Builder Bloat:</strong> Built entirely with clean PHP, modular CSS3, and Vanilla JavaScript (main.js) with WebP image optimization for fast load times.</li>
+                <li data-i18n="proj6.h3"><strong>Custom Theme Customizer &amp; Installer:</strong> Created custom WordPress Customizer panels (customizer.php) and a one-click automated page/content setup script (installer.php).</li>
+                <li data-i18n="proj6.h4"><strong>Modular Components &amp; Custom Contact System:</strong> Developed custom shortcodes, UI blocks, built-in SEO/Schema markup (seo.php), and a dedicated contact form handler (contact.php).</li>
+              </ul>
+            </div>
           </article>
         </div>
       </div>
@@ -457,8 +513,8 @@
     <section class="section section-muted" id="services">
       <div class="container">
         <div class="section-heading reveal">
-          <p class="section-label">Services</p>
-          <h2 class="section-title">Turning challenges <br /><span class="text-gradient">into solutions.</span></h2>
+          <p class="section-label" data-i18n="nav.services">Services</p>
+          <h2 class="section-title" data-i18n="serv.title">Turning challenges <br /><span class="text-gradient">into solutions.</span></h2>
         </div>
 
         <div class="services-grid">
@@ -467,12 +523,12 @@
               <div class="service-icon"><i class="fa-solid fa-brain"></i></div>
               <span class="service-num">01</span>
             </div>
-            <h3>Machine &amp; Deep Learning</h3>
-            <p>End-to-end predictive modeling, computer vision pipelines, time series forecasting, and MLOps deployment.</p>
+            <h3 data-i18n="serv1.t">Machine &amp; Deep Learning</h3>
+            <p data-i18n="serv1.p">End-to-end predictive modeling, computer vision pipelines, time series forecasting, and MLOps deployment.</p>
             <button class="learn-more" type="button" aria-expanded="false">
-              <span>Learn more</span> <i class="fa-solid fa-chevron-down"></i>
+              <span data-i18n="ui.learnMore">Learn more</span> <i class="fa-solid fa-chevron-down"></i>
             </button>
-            <div class="service-extra">
+            <div class="service-extra" data-i18n="serv1.x">
               Specialized in scikit-learn, XGBoost, CNNs, YOLO, ResNet, model containerization, Streamlit apps, and Hugging Face pipelines.
             </div>
           </article>
@@ -482,12 +538,12 @@
               <div class="service-icon"><i class="fa-solid fa-chart-pie"></i></div>
               <span class="service-num">02</span>
             </div>
-            <h3>Business Intelligence</h3>
-            <p>Interactive, visually compelling Power BI dashboards with DAX that turn fragmented numbers into executive insights.</p>
+            <h3 data-i18n="serv2.t">Business Intelligence</h3>
+            <p data-i18n="serv2.p">Interactive, visually compelling Power BI dashboards with DAX that turn fragmented numbers into executive insights.</p>
             <button class="learn-more" type="button" aria-expanded="false">
-              <span>Learn more</span> <i class="fa-solid fa-chevron-down"></i>
+              <span data-i18n="ui.learnMore">Learn more</span> <i class="fa-solid fa-chevron-down"></i>
             </button>
-            <div class="service-extra">
+            <div class="service-extra" data-i18n="serv2.x">
               Data modeling, KPI definition, automated reporting, Power Query transformations, and decision-support analytics.
             </div>
           </article>
@@ -497,12 +553,12 @@
               <div class="service-icon"><i class="fa-solid fa-gears"></i></div>
               <span class="service-num">03</span>
             </div>
-            <h3>Data Engineering &amp; ETL</h3>
-            <p>Clean database architecture, scalable ETL data pipelines, and automated web extraction workflows.</p>
+            <h3 data-i18n="skills.c2">Data Engineering &amp; ETL</h3>
+            <p data-i18n="serv3.p">Clean database architecture, scalable ETL data pipelines, and automated web extraction workflows.</p>
             <button class="learn-more" type="button" aria-expanded="false">
-              <span>Learn more</span> <i class="fa-solid fa-chevron-down"></i>
+              <span data-i18n="ui.learnMore">Learn more</span> <i class="fa-solid fa-chevron-down"></i>
             </button>
-            <div class="service-extra">
+            <div class="service-extra" data-i18n="serv3.x">
               SQL Server, MySQL, Python automation scripts, Selenium bots, BULK INSERT pipelines, and query optimization.
             </div>
           </article>
@@ -512,12 +568,12 @@
               <div class="service-icon"><i class="fa-solid fa-plane-circle-check"></i></div>
               <span class="service-num">04</span>
             </div>
-            <h3>Aviation Analytics</h3>
-            <p>Domain-aware analytics for aircraft fleets, flight operational delays, airspace metrics, and aerospace data.</p>
+            <h3 data-i18n="serv4.t">Aviation Analytics</h3>
+            <p data-i18n="serv4.p">Domain-aware analytics for aircraft fleets, flight operational delays, airspace metrics, and aerospace data.</p>
             <button class="learn-more" type="button" aria-expanded="false">
-              <span>Learn more</span> <i class="fa-solid fa-chevron-down"></i>
+              <span data-i18n="ui.learnMore">Learn more</span> <i class="fa-solid fa-chevron-down"></i>
             </button>
-            <div class="service-extra">
+            <div class="service-extra" data-i18n="serv4.x">
               Aviation Information Systems (AIS), air traffic control insights, fleet operations, and ACMI market research.
             </div>
           </article>
@@ -525,123 +581,15 @@
       </div>
     </section>
 
-    <!-- TESTIMONIALS SECTION (Autoplay Carousel with Smooth Track Sliding) -->
-    <section class="section" id="testimonials">
-      <div class="container">
-        <div class="section-heading reveal text-center">
-          <p class="section-label">Recommendations</p>
-          <h2 class="section-title">What people <span class="text-gradient">say about my work.</span></h2>
-        </div>
-
-        <div class="carousel-wrapper reveal">
-          <div class="carousel-viewport" id="carouselViewport">
-            <div class="carousel-track" id="testimonialTrack">
-              
-              <article class="testimonial-slide">
-                <div class="testimonial-card">
-                  <div class="quote-symbol"><i class="fa-solid fa-quote-left"></i></div>
-                  <p class="quote-body">
-                    “Mahmoud demonstrated meticulous attention to detail while transforming raw business data into actionable, easy-to-understand Power BI dashboards. His curiosity, strong foundation, and structured mindset stand out.”
-                  </p>
-                  <div class="person-info">
-                    <div class="avatar-ring">BA</div>
-                    <div class="person-details">
-                      <strong>Business Analytics Mentor</strong>
-                      <small>Data Analytics Training Program</small>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              <article class="testimonial-slide">
-                <div class="testimonial-card">
-                  <div class="quote-symbol"><i class="fa-solid fa-quote-left"></i></div>
-                  <p class="quote-body">
-                    “His work on the sales forecasting project demonstrated a solid understanding of preprocessing, model comparison, and performance evaluation. Mahmoud connected complex technical findings directly to business strategy.”
-                  </p>
-                  <div class="person-info">
-                    <div class="avatar-ring">ML</div>
-                    <div class="person-details">
-                      <strong>Machine Learning Mentor</strong>
-                      <small>Applied Machine Learning Program</small>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              <article class="testimonial-slide">
-                <div class="testimonial-card">
-                  <div class="quote-symbol"><i class="fa-solid fa-quote-left"></i></div>
-                  <p class="quote-body">
-                    “Mahmoud approached the flight delay intelligence analysis with an impressive harmony between aviation domain knowledge and data engineering. His database structure made the patterns remarkably clear.”
-                  </p>
-                  <div class="person-info">
-                    <div class="avatar-ring">AV</div>
-                    <div class="person-details">
-                      <strong>Aviation Data Reviewer</strong>
-                      <small>Aviation Analytics Project</small>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              <article class="testimonial-slide">
-                <div class="testimonial-card">
-                  <div class="quote-symbol"><i class="fa-solid fa-quote-left"></i></div>
-                  <p class="quote-body">
-                    “Mahmoud was exceptionally receptive to feedback and broke down complex problems into clear, manageable steps. His growth in Python and machine learning was evident during collaborative sprints.”
-                  </p>
-                  <div class="person-info">
-                    <div class="avatar-ring">TM</div>
-                    <div class="person-details">
-                      <strong>Technical Team Member</strong>
-                      <small>AI Training Community</small>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              <article class="testimonial-slide">
-                <div class="testimonial-card">
-                  <div class="quote-symbol"><i class="fa-solid fa-quote-left"></i></div>
-                  <p class="quote-body">
-                    “His ability to move seamlessly from raw data cleaning to functional deployment using Streamlit and MLflow proved his end-to-end mindset. Mahmoud consistently delivers real value for stakeholders.”
-                  </p>
-                  <div class="person-info">
-                    <div class="avatar-ring">DS</div>
-                    <div class="person-details">
-                      <strong>Data Science Instructor</strong>
-                      <small>Applied AI Program</small>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-            </div>
-          </div>
-
-          <!-- Carousel Controls -->
-          <div class="carousel-navigation">
-            <button class="nav-btn prev-btn" id="prevTestimonial" aria-label="Previous Testimonial">
-              <i class="fa-solid fa-arrow-left-long"></i>
-            </button>
-            <div class="carousel-bullets" id="carouselBullets"></div>
-            <button class="nav-btn next-btn" id="nextTestimonial" aria-label="Next Testimonial">
-              <i class="fa-solid fa-arrow-right-long"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- CONTACT SECTION (Text overlap completely fixed & Links side by side) -->
     <section class="section contact-section" id="contact">
       <div class="container contact-container">
         
         <div class="section-heading reveal text-center">
-          <p class="section-label">Get In Touch</p>
-          <h2 class="section-title">Let's build something <br /><span class="text-gradient">remarkable together.</span></h2>
-          <p class="contact-subtitle">Have an interesting project, aviation analytics query, or machine learning opportunity? Let's connect!</p>
+          <p class="section-label" data-i18n="hero.btn2">Get In Touch</p>
+          <h2 class="section-title" data-i18n="contact.title">Let's build something <br /><span class="text-gradient">remarkable together.</span></h2>
+          <p class="contact-subtitle" data-i18n="contact.sub">Have an interesting project, aviation analytics query, or machine learning opportunity? Let's connect!</p>
         </div>
 
         <!-- 3 Primary Social Contact Cards Side by Side (LinkedIn, GitHub, Email) -->
@@ -649,7 +597,7 @@
           <a href="https://www.linkedin.com/in/mahmoudbayoumi-ai/" target="_blank" rel="noopener noreferrer" class="contact-quick-card linkedin-card">
             <div class="quick-card-icon"><i class="fa-brands fa-linkedin-in"></i></div>
             <div class="quick-card-info">
-              <small>Connect on LinkedIn</small>
+              <small data-i18n="contact.linkedin">Connect on LinkedIn</small>
               <strong>/mahmoudbayoumi-ai</strong>
             </div>
             <div class="quick-card-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
@@ -658,7 +606,7 @@
           <a href="https://github.com/MahmoudBayoumi-AI" target="_blank" rel="noopener noreferrer" class="contact-quick-card github-card">
             <div class="quick-card-icon"><i class="fa-brands fa-github"></i></div>
             <div class="quick-card-info">
-              <small>Explore Repositories</small>
+              <small data-i18n="contact.github">Explore Repositories</small>
               <strong>/MahmoudBayoumi-AI</strong>
             </div>
             <div class="quick-card-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
@@ -667,7 +615,7 @@
           <a href="mailto:mahmoud.bayoumi.ai@gmail.com" class="contact-quick-card email-card">
             <div class="quick-card-icon"><i class="fa-solid fa-envelope"></i></div>
             <div class="quick-card-info">
-              <small>Send an Email</small>
+              <small data-i18n="contact.email">Send an Email</small>
               <strong>mahmoud.bayoumi.ai@gmail.com</strong>
             </div>
             <div class="quick-card-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
@@ -676,21 +624,21 @@
 
         <div class="contact-bottom-grid">
           <div class="contact-extra-info reveal">
-            <h3>Direct Communication</h3>
-            <p>I'm always receptive to discussing new opportunities, machine learning architectures, data-driven systems, or general technical inquiries.</p>
+            <h3 data-i18n="contact.direct">Direct Communication</h3>
+            <p data-i18n="contact.directp">I'm always receptive to discussing new opportunities, machine learning architectures, data-driven systems, or general technical inquiries.</p>
             <div class="extra-items">
               <div class="extra-item">
                 <i class="fa-solid fa-phone"></i>
                 <div>
-                  <small>Phone / WhatsApp</small>
+                  <small data-i18n="contact.phone">Phone / WhatsApp</small>
                   <span>01015936544</span>
                 </div>
               </div>
               <div class="extra-item">
                 <i class="fa-solid fa-location-dot"></i>
                 <div>
-                  <small>Location</small>
-                  <span>Egypt</span>
+                  <small data-i18n="contact.loc">Location</small>
+                  <span data-i18n="contact.egypt">Egypt</span>
                 </div>
               </div>
             </div>
@@ -699,24 +647,24 @@
           <form class="contact-form reveal" id="contactForm" novalidate>
             <div class="form-row">
               <label>
-                <span>Full Name</span>
-                <input type="text" name="name" placeholder="Your Name" required />
+                <span data-i18n="form.name">Full Name</span>
+                <input type="text" name="name" placeholder="Your Name" data-i18n-placeholder="ph.name" required />
               </label>
               <label>
-                <span>Email Address</span>
-                <input type="email" name="email" placeholder="you@company.com" required />
+                <span data-i18n="form.email">Email Address</span>
+                <input type="email" name="email" placeholder="you@company.com" data-i18n-placeholder="ph.email" required />
               </label>
             </div>
             <label>
-              <span>Subject</span>
-              <input type="text" name="subject" placeholder="Project inquiry / Opportunity" required />
+              <span data-i18n="form.subject">Subject</span>
+              <input type="text" name="subject" placeholder="Project inquiry / Opportunity" data-i18n-placeholder="ph.subject" required />
             </label>
             <label>
-              <span>Message</span>
-              <textarea name="message" rows="5" placeholder="Tell me about your project goals or data challenges..." required></textarea>
+              <span data-i18n="form.message">Message</span>
+              <textarea name="message" rows="5" placeholder="Tell me about your project goals or data challenges..." data-i18n-placeholder="ph.message" required></textarea>
             </label>
             <button class="btn btn-primary btn-submit" type="submit">
-              <span>Send Message</span>
+              <span data-i18n="form.send">Send Message</span>
               <i class="fa-solid fa-paper-plane"></i>
             </button>
             <p class="form-status" id="formStatus" role="status"></p>
@@ -731,9 +679,9 @@
     <div class="container footer-inner">
       <a class="logo" href="#home">
         <span class="logo-box">MB</span>
-        <span class="logo-text">Mahmoud<small>Bayoumi</small></span>
+        <span class="logo-text" data-i18n="logo">Mahmoud<small>Bayoumi</small></span>
       </a>
-      <p>© 2026 Mahmoud Bayoumi. All rights reserved.</p>
+      <p data-i18n="footer.rights">© 2026 Mahmoud Bayoumi. All rights reserved.</p>
       <div class="footer-links">
         <a href="https://github.com/MahmoudBayoumi-AI" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
         <a href="https://www.linkedin.com/in/mahmoudbayoumi-ai/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
@@ -749,6 +697,7 @@
     </div>
   </a>
 
+  <script src="translations.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

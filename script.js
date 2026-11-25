@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const htmlElement = document.documentElement;
 
   // Retrieve saved theme or default to dark
-  const savedTheme = localStorage.getItem('theme') || 'dark';
+  const savedTheme = 'dark'; // always open in dark mode
   htmlElement.setAttribute('data-theme', savedTheme);
 
   if (themeToggleBtn) {
@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
       
       htmlElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
     });
   }
 
@@ -192,6 +191,66 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* -------------------------------------------------------------
+     5b. Language Switcher (English default / Arabic with RTL)
+     - The page ALWAYS opens in English.
+     - Arabic can be opened by the toggle button, or by a link ending in ?lang=ar
+     - All texts live in translations.js
+  ------------------------------------------------------------- */
+  const I18N = window.I18N || {};
+  const langToggleBtn = $('#langToggle');
+  let currentLang = 'en';
+  let restartTypewriter = () => {};
+
+  function t(key) {
+    const dict = I18N[currentLang] || {};
+    return dict[key] !== undefined ? dict[key] : (I18N.en || {})[key];
+  }
+
+  function applyLanguage(lang, isInitial = false) {
+    currentLang = I18N[lang] ? lang : 'en';
+    const root = document.documentElement;
+    root.setAttribute('lang', currentLang);
+    root.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+
+    // Initial English load: the HTML already contains the English text.
+    if (!(isInitial && currentLang === 'en')) {
+      $$('[data-i18n]').forEach(el => {
+        const value = t(el.dataset.i18n);
+        if (value !== undefined) el.innerHTML = value;
+      });
+      $$('[data-i18n-placeholder]').forEach(el => {
+        const value = t(el.dataset.i18nPlaceholder);
+        if (value !== undefined) el.setAttribute('placeholder', value);
+      });
+      $$('[data-i18n-alt]').forEach(el => {
+        const value = t(el.dataset.i18nAlt);
+        if (value !== undefined) el.setAttribute('alt', value);
+      });
+      // Service cards that are currently expanded keep the "Show less" label
+      $$('.service-card.open .learn-more span').forEach(label => {
+        label.textContent = t('ui.showLess');
+      });
+      const metaDescription = $('meta[name="description"]');
+      if (metaDescription && t('meta.description')) metaDescription.setAttribute('content', t('meta.description'));
+      if (t('meta.title')) document.title = t('meta.title');
+    }
+
+    if (langToggleBtn) {
+      langToggleBtn.textContent = t('ui.langButton');
+      langToggleBtn.setAttribute('title', t('ui.langTitle'));
+      langToggleBtn.setAttribute('lang', currentLang === 'ar' ? 'en' : 'ar');
+    }
+
+    restartTypewriter();
+  }
+
+  if (langToggleBtn) {
+    langToggleBtn.addEventListener('click', () => {
+      applyLanguage(currentLang === 'ar' ? 'en' : 'ar');
+    });
+  }
+
+  /* -------------------------------------------------------------
      6. Guaranteed Specialization Typewriter Animation
      Cycles through:
      1) Data Scientist
@@ -200,12 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
      4) Aviation Data Specialist
   ------------------------------------------------------------- */
   const rotatingTitle = $('#rotatingTitle');
-  const titlesList = [
-    'Data Scientist',
-    'Data Analyst',
-    'ML Engineer',
-    'Aviation Data Specialist'
-  ];
+  const getTitles = () => t('ui.titles') || ['Data Scientist'];
 
   if (rotatingTitle) {
     let wordIdx = 0;
@@ -215,8 +269,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const deleteSpeed = 40;
     const holdTime = 2000;
 
+    restartTypewriter = () => {
+      wordIdx = 0;
+      charIdx = 0;
+      isDeleting = false;
+    };
+
     function runTypewriter() {
-      const currentFullText = titlesList[wordIdx];
+      const titlesList = getTitles();
+      const currentFullText = titlesList[wordIdx % titlesList.length];
 
       if (!isDeleting) {
         // Typing characters
@@ -349,12 +410,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const currentProgress = 1 - (1 - progress) * (1 - progress);
       const value = Math.floor(targetNumber * currentProgress);
 
-      element.textContent = value.toLocaleString();
+      element.textContent = value.toLocaleString('en-US');
 
       if (progress < 1) {
         requestAnimationFrame(updateNumber);
       } else {
-        element.textContent = targetNumber.toLocaleString();
+        element.textContent = targetNumber.toLocaleString('en-US');
       }
     }
 
@@ -377,7 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
     counterElements.forEach(counter => counterObserver.observe(counter));
   } else {
     counterElements.forEach(counter => {
-      counter.textContent = Number(counter.dataset.target || 0).toLocaleString();
+      counter.textContent = Number(counter.dataset.target || 0).toLocaleString('en-US');
     });
   }
 
@@ -391,7 +452,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const isOpened = card.classList.toggle('open');
       btn.setAttribute('aria-expanded', String(isOpened));
       const label = btn.querySelector('span');
-      if (label) label.textContent = isOpened ? 'Show less' : 'Learn more';
+      if (label) label.textContent = isOpened ? t('ui.showLess') : t('ui.learnMore');
     });
   });
 
@@ -407,7 +468,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!contactForm.checkValidity()) {
         if (formStatus) {
-          formStatus.textContent = 'Please fill out all required fields with valid details.';
+          formStatus.textContent = t('ui.formInvalid');
           formStatus.style.color = '#f87171';
         }
         contactForm.reportValidity();
@@ -415,7 +476,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (formStatus) {
-        formStatus.textContent = 'Thank you! Your message has been sent successfully.';
+        formStatus.textContent = t('ui.formOk');
         formStatus.style.color = 'var(--primary)';
       }
 
@@ -438,4 +499,9 @@ document.addEventListener('DOMContentLoaded', () => {
       { passive: true }
     );
   }
+  /* -------------------------------------------------------------
+     12. Initial language (always English unless the link has ?lang=ar)
+  ------------------------------------------------------------- */
+  const urlLang = new URLSearchParams(window.location.search).get('lang');
+  applyLanguage(urlLang === 'ar' ? 'ar' : 'en', true);
 });
