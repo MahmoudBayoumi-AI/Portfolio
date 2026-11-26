@@ -65,16 +65,28 @@ document.addEventListener('DOMContentLoaded', () => {
   /* -------------------------------------------------------------
      3. Smooth Animated Scroll (Nav Links & Back to Top)
   ------------------------------------------------------------- */
-  // Phones / tablets: jump straight to the target (no heavy animation)
-  const isTouchDevice = window.matchMedia('(hover: none), (pointer: coarse)').matches;   // ← جديد
+  const isTouchDevice = window.matchMedia('(hover: none), (pointer: coarse)').matches;
 
   function smoothScrollToTarget(targetY, duration = 850) {
-    if (isTouchDevice) {                                                                  // ← جديد
-      window.scrollTo(0, targetY);                                                        // ← جديد
-      return;                                                                             // ← جديد
-    }                                                                                     // ← جديد
-
     const startY = window.pageYOffset;
+
+    if (prefersReduced) {
+      window.scrollTo(0, targetY);
+      return;
+    }
+
+    // Phones: the browser's own smooth scroll (starts immediately, no JS per frame).
+    // For long distances, jump close to the target first and glide only the last part.
+    if (isTouchDevice) {
+      const maxGlide = window.innerHeight * 1.5;
+      if (Math.abs(targetY - startY) > maxGlide) {
+        window.scrollTo(0, targetY + (startY < targetY ? -maxGlide : maxGlide));
+      }
+      window.scrollTo({ top: targetY, behavior: 'smooth' });
+      return;
+    }
+
+    // Desktop: the animated scroll as before
     const distance = targetY - startY;
     let startTime = null;
 
@@ -119,7 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  
   /* -------------------------------------------------------------
      4. Mobile Navigation Menu
      - one tap opens / closes (the icon element is never replaced, so the
