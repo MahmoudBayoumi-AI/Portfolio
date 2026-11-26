@@ -50,7 +50,7 @@
 }
 
 html {
-  scroll-behavior: auto;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -118,19 +118,13 @@ body::after {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  transform: scaleX(0);
-  transform-origin: left center;
+  width: 0%;
   height: 3.5px;
   background: var(--gradient-main);
   z-index: 9999;
   box-shadow: 0 0 15px var(--primary);
-  transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: width 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
   pointer-events: none;
-}
-
-html[dir="rtl"] .page-progress {
-  transform-origin: right center;
 }
 
 .container {
