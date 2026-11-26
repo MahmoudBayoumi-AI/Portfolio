@@ -489,7 +489,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!contactForm.checkValidity()) {
         if (formStatus) {
           formStatus.textContent = t('ui.formInvalid');
-          formStatus.style.color = '#f87171';
+          formStatus.dataset.state = 'error';
         }
         contactForm.reportValidity();
         return;
@@ -497,28 +497,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (formStatus) {
         formStatus.textContent = t('ui.formOk');
-        formStatus.style.color = 'var(--primary)';
+        formStatus.dataset.state = 'ok';
       }
 
       contactForm.reset();
     });
   }
 
-  /* -------------------------------------------------------------
-     11. Ambient Cursor Tracker
-  ------------------------------------------------------------- */
-  const cursorGlow = $('#cursorGlow');
-
-  if (cursorGlow && !prefersReduced) {
-    window.addEventListener(
-      'pointermove',
-      e => {
-        cursorGlow.style.left = `${e.clientX}px`;
-        cursorGlow.style.top = `${e.clientY}px`;
-      },
-      { passive: true }
-    );
-  }
   /* -------------------------------------------------------------
      12. Initial language (always English unless the link has ?lang=ar)
   ------------------------------------------------------------- */
