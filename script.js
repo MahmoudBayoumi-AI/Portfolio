@@ -61,10 +61,19 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(makeAllElementsVisible, 2000);
   }
 
+
   /* -------------------------------------------------------------
      3. Smooth Animated Scroll (Nav Links & Back to Top)
   ------------------------------------------------------------- */
+  // Phones / tablets: jump straight to the target (no heavy animation)
+  const isTouchDevice = window.matchMedia('(hover: none), (pointer: coarse)').matches;   // ← جديد
+
   function smoothScrollToTarget(targetY, duration = 850) {
+    if (isTouchDevice) {                                                                  // ← جديد
+      window.scrollTo(0, targetY);                                                        // ← جديد
+      return;                                                                             // ← جديد
+    }                                                                                     // ← جديد
+
     const startY = window.pageYOffset;
     const distance = targetY - startY;
     let startTime = null;
@@ -110,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  
   /* -------------------------------------------------------------
      4. Mobile Navigation Menu
      - one tap opens / closes (the icon element is never replaced, so the
@@ -169,37 +179,61 @@ document.addEventListener('DOMContentLoaded', () => {
   const sections = $$('main section[id]');
   const navItems = $$('.nav-link');
 
-  function onScroll() {
-    const currentScrollY = window.pageYOffset;
+  // Positions are measured once (not on every scroll event)
+  let sectionTops = [];
+  let maxScroll = 1;
+  let lastActive = '';
+  let ticking = false;
+
+  function measure() {
+    const y = window.pageYOffset;
+    sectionTops = sections.map(sec => {
+      const r = sec.getBoundingClientRect();
+      return { id: sec.id, top: r.top + y, bottom: r.bottom + y };
+    });
+    maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+  }
+
+  function update() {
+    ticking = false;
+    const y = window.pageYOffset;
 
     if (siteHeader) {
-      siteHeader.classList.toggle('scrolled', currentScrollY > 30);
+      siteHeader.classList.toggle('scrolled', y > 30);
     }
 
     if (backToTopBtn) {
-      backToTopBtn.classList.toggle('show', currentScrollY > 400);
+      backToTopBtn.classList.toggle('show', y > 400);
     }
 
     if (pageProgress) {
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      const progressPercent = maxScroll > 0 ? (currentScrollY / maxScroll) * 100 : 0;
-      pageProgress.style.width = `${Math.min(100, Math.max(0, progressPercent))}%`;
+      pageProgress.style.transform = `scaleX(${Math.min(1, Math.max(0, y / maxScroll))})`;
     }
 
-    const activeSection = sections.find(sec => {
-      const rect = sec.getBoundingClientRect();
-      return rect.top <= 180 && rect.bottom >= 180;
-    });
-
-    if (activeSection) {
+    const probe = y + 180;
+    const active = sectionTops.find(s => s.top <= probe && s.bottom >= probe);
+    if (active && active.id !== lastActive) {
+      lastActive = active.id;
       navItems.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${activeSection.id}`);
+        link.classList.toggle('active', link.getAttribute('href') === `#${active.id}`);
       });
     }
   }
 
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }
+
+  measure();
+  window.addEventListener('load', measure);
+  window.addEventListener('resize', measure);
+  setTimeout(measure, 1500);   // after images / fonts finish loading
+
   window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  update();
 
   if (backToTopBtn) {
     backToTopBtn.addEventListener('click', event => {
