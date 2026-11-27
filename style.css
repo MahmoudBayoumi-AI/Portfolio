@@ -569,6 +569,8 @@ main { counter-reset: sec; }
   *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; transition-delay: 0ms !important; }
   .js-ready .reveal, .js-ready .stagger > *, .js-ready .skill-card .tags span, .js-ready .section-title .w > span { opacity: 1 !important; transform: none !important; }
   .timeline::after { transform: scaleY(1); }
+  /* the tools ticker keeps its slow drift even with reduced motion */
+  .ticker-track { animation: marquee 60s linear infinite !important; }
 }
 
 /* Laptop / tablet ----------------------------------------------------------- */
