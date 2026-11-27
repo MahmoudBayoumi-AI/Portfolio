@@ -175,7 +175,7 @@ i { font-size: 14px; }
 .section-label { margin-bottom: 20px; font-size: 14px; font-weight: 500; color: var(--accent-ink); counter-increment: sec; }
 .section-label::before { content: "0" counter(sec) "  /  "; color: var(--text-3); white-space: pre; font-variant-numeric: tabular-nums; }
 .hero .section-label::before { content: none; }
-main { counter-reset: sec; }
+main { counter-reset: sec; overflow-x: clip; }
 
 .section-title {
   font-family: var(--display); font-weight: 400; font-size: clamp(40px, 6vw, 76px);
@@ -465,7 +465,7 @@ main { counter-reset: sec; }
   --accent: #3550b8; --accent-ink: #3550b8; --on-accent: #ffffff;
   display: grid; gap: 20px; padding: 36px; background: var(--surface); color: var(--text); border-radius: var(--r-xl);
 }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.form-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
 .contact-form label { display: grid; gap: 8px; }
 .contact-form label > span { font-size: 14px; font-weight: 500; color: var(--text-2); }
 .contact-form input, .contact-form textarea {
@@ -480,8 +480,8 @@ main { counter-reset: sec; }
 .form-status { min-height: 1.5em; font-size: 14px; }
 .form-status[data-state="info"] { color: var(--text-2); }
 .contact-form .btn-submit:disabled { opacity: 0.6; cursor: wait; }
-/* honeypot: hidden in place (an offset like left:-9999px widens RTL pages and shrinks them on phones) */
-.hp-field { position: absolute; width: 1px; height: 1px; padding: 0; border: 0; overflow: hidden; clip: rect(0 0 0 0); opacity: 0; pointer-events: none; }
+/* honeypot: hidden in place. Needs the .contact-form prefix so it beats `.contact-form input` (width:100% + padding), which was making the page wider than the phone screen */
+.contact-form .hp-field { position: absolute; width: 1px; height: 1px; min-height: 0; margin: 0; padding: 0; border: 0; overflow: hidden; clip: rect(0 0 0 0); opacity: 0; pointer-events: none; }
 .form-status[data-state="ok"] { color: var(--ok); }
 .form-status[data-state="error"] { color: var(--err); }
 
@@ -584,12 +584,12 @@ main { counter-reset: sec; }
 }
 @media (max-width: 1080px) {
   .section { padding-block: 96px; }
-  .contact-cards-row { grid-template-columns: 1fr; }
+  .contact-cards-row { grid-template-columns: minmax(0, 1fr); }
   .service-card { grid-template-columns: 56px minmax(0, 1fr) auto; }
   .service-card p { grid-column: 2 / 3; grid-row: 2; }
   .service-card .learn-more { grid-column: 3; grid-row: 1 / 3; }
   .service-extra { grid-column: 2 / -1; }
-  .skill-card { grid-template-columns: 1fr; gap: 20px; }
+  .skill-card { grid-template-columns: minmax(0, 1fr); gap: 20px; }
 }
 
 /* Mobile navigation ------------------------------------------------------- */
@@ -610,14 +610,14 @@ main { counter-reset: sec; }
   .menu-open body { overflow: hidden; }
   .menu-open .site-header::before { opacity: 1; }
   .nav-links { flex-direction: column; align-items: stretch; gap: 0; }
-  .nav-link { padding: 12px 4px; font-family: var(--display); font-size: 20px; border-bottom: 1px solid var(--line); }
-  [dir="rtl"] .nav-link { font-family: var(--font); font-size: 17px; }
+  .nav-link { padding: 12px 4px; font-family: var(--display); font-size: 21px; border-bottom: 1px solid var(--line); }
+  [dir="rtl"] .nav-link { font-family: var(--font); font-size: 18px; }
   .nav-link::after { display: none; }
   .nav-link.active { color: var(--accent-ink); }
   .nav-actions { flex-wrap: wrap; }
   .nav-actions .cv-button { display: none; }
-  .nav-cta { flex: 1; justify-content: center; height: 42px; font-size: 14px; }
-  .lang-toggle, .theme-toggle { height: 42px; min-width: 42px; }
+  .nav-cta { flex: 1; justify-content: center; height: 44px; font-size: 14px; }
+  .lang-toggle, .theme-toggle { height: 44px; min-width: 44px; }
   .nav-menu.open .nav-link, .nav-menu.open .nav-actions { animation: rise 500ms var(--ease) both; }
   .nav-menu.open .nav-link:nth-child(1) { animation-delay: 40ms; }
   .nav-menu.open .nav-link:nth-child(2) { animation-delay: 80ms; }
@@ -630,19 +630,19 @@ main { counter-reset: sec; }
   .nav-menu.open .nav-actions { animation-delay: 380ms; }
 
   .hero { padding-top: 80px; }
-  .hero-grid { grid-template-columns: 1fr; min-height: 0; border-radius: var(--r-lg); }
+  .hero-grid { grid-template-columns: minmax(0, 1fr); min-height: 0; border-radius: var(--r-lg); }
   .hero-content, [dir="rtl"] .hero-content { padding: 32px 24px 36px; }
   .hero-visual { min-height: 0; height: 420px; }
   .hero-image img { object-position: 50% 18%; }
   .hero-title { font-size: clamp(52px, 15vw, 84px); }
-  .stats-card { grid-template-columns: 1fr 1fr; margin-top: 40px; row-gap: 32px; }
+  .stats-card { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); margin-top: 40px; row-gap: 32px; }
   .stat-item:nth-child(3) { border-inline-start: 0; padding-inline-start: 0; }
 
-  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .about-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; }
   .about-visual { max-width: 480px; }
-  .project-card.wide { grid-template-columns: 1fr; gap: 32px; }
+  .project-card.wide { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .project-details { padding-inline-start: 0; border-inline-start: 0; padding-top: 32px; border-top: 1px solid var(--line); }
-  .contact-bottom-grid { grid-template-columns: 1fr; gap: 48px; margin-top: 56px; }
+  .contact-bottom-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; margin-top: 56px; }
 }
 
 /* Phone ------------------------------------------------------------------- */
@@ -662,14 +662,14 @@ main { counter-reset: sec; }
   .timeline-marker { inset-inline-start: -32px; width: 16px; height: 16px; top: 28px; }
   .timeline::before, .timeline::after { inset-inline-start: 7px; }
   .timeline-top { flex-direction: column; gap: 10px; }
-  .projects-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: minmax(0, 1fr); }
   .project-card.featured, .project-card.wide { grid-column: auto; }
   .service-card { grid-template-columns: 40px minmax(0, 1fr); gap: 8px 16px; align-items: start; }
   .service-card h3 { grid-column: 2; }
   .service-card p { grid-column: 2; grid-row: auto; }
   .service-card .learn-more { grid-column: 2; grid-row: auto; justify-self: start; margin-top: 8px; }
   .service-extra { grid-column: 2; }
-  .form-row { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: minmax(0, 1fr); }
   .btn-submit { justify-self: stretch; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
   .ticker-track span { font-size: 22px; }
