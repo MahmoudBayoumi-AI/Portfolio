@@ -16,12 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const htmlElement = document.documentElement;
 
   // Retrieve saved theme or default to dark
-  const savedTheme = 'light'; // opens in light mode, the toggle switches to dark
+  const savedTheme = 'dark'; // opens in dark mode, the toggle switches to light
   htmlElement.setAttribute('data-theme', savedTheme);
 
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener('click', () => {
-      const currentTheme = htmlElement.getAttribute('data-theme') || 'light';
+      const currentTheme = htmlElement.getAttribute('data-theme') || 'dark';
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
       
       htmlElement.setAttribute('data-theme', newTheme);
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // choosing a section (or tapping the logo) closes the menu
-    $$('.nav-link', navMenu).forEach(link => {
+    $$('.nav-link, .nav-cta', navMenu).forEach(link => {
       link.addEventListener('click', () => setMenu(false));
     });
     const logoLink = $('.logo');
@@ -509,13 +509,13 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* -------------------------------------------------------------
-     10. Contact Form Simulation
+     10. Contact form (sends an email through FormSubmit)
   ------------------------------------------------------------- */
   const contactForm = $('#contactForm');
   const formStatus = $('#formStatus');
 
   if (contactForm) {
-    contactForm.addEventListener('submit', e => {
+    contactForm.addEventListener('submit', async e => {
       e.preventDefault();
 
       if (!contactForm.checkValidity()) {
@@ -527,12 +527,37 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      if (formStatus) {
-        formStatus.textContent = t('ui.formOk');
-        formStatus.dataset.state = 'ok';
-      }
+      const submitBtn = contactForm.querySelector('.btn-submit');
+      const setStatus = (key, state) => {
+        if (!formStatus) return;
+        formStatus.textContent = t(key);
+        formStatus.dataset.state = state;
+      };
 
-      contactForm.reset();
+      if (submitBtn) submitBtn.disabled = true;
+      setStatus('ui.formSending', 'info');
+
+      try {
+        const data = new FormData(contactForm);
+        data.append('_subject', 'Portfolio message: ' + (data.get('subject') || ''));
+        data.append('_template', 'table');
+        data.append('_captcha', 'false');
+
+        const res = await fetch('https://formsubmit.co/ajax/mahmoud.bayoumi.ai@gmail.com', {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: data
+        });
+        const result = await res.json();
+        if (!res.ok || String(result.success) !== 'true') throw new Error(result.message || 'send failed');
+
+        setStatus('ui.formOk', 'ok');
+        contactForm.reset();
+      } catch (err) {
+        setStatus('ui.formFail', 'error');
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+      }
     });
   }
 
