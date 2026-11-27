@@ -16,12 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const htmlElement = document.documentElement;
 
   // Retrieve saved theme or default to dark
-  const savedTheme = 'dark'; // always open in dark mode
+  const savedTheme = 'light'; // opens in light mode, the toggle switches to dark
   htmlElement.setAttribute('data-theme', savedTheme);
 
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener('click', () => {
-      const currentTheme = htmlElement.getAttribute('data-theme') || 'dark';
+      const currentTheme = htmlElement.getAttribute('data-theme') || 'light';
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
       
       htmlElement.setAttribute('data-theme', newTheme);
@@ -47,6 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
+            const settled = entry.target;
+            setTimeout(() => settled.classList.add('settled'), 1600);
             observer.unobserve(entry.target);
           }
         });
@@ -226,6 +228,35 @@ document.addEventListener('DOMContentLoaded', () => {
     return dict[key] !== undefined ? dict[key] : (I18N.en || {})[key];
   }
 
+  /* Split titles into words so they can rise out of a mask (Arabic is split by word only, never by letter) */
+  function splitWords(el) {
+    if (el.querySelector('.w')) return;
+    let index = 0;
+    const walk = node => {
+      [...node.childNodes].forEach(child => {
+        if (child.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          child.textContent.split(/(\s+)/).forEach(part => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+            const wrap = document.createElement('span');
+            wrap.className = 'w';
+            const inner = document.createElement('span');
+            inner.textContent = part;
+            inner.style.setProperty('--wi', index++);
+            wrap.appendChild(inner);
+            frag.appendChild(wrap);
+          });
+          node.replaceChild(frag, child);
+        } else if (child.nodeType === 1 && child.tagName !== 'BR' && !child.classList.contains('w')) {
+          walk(child);
+        }
+      });
+    };
+    walk(el);
+  }
+  const splitTitles = () => $$('.hero-title, .section-title').forEach(splitWords);
+
   function applyLanguage(lang, isInitial = false) {
     currentLang = I18N[lang] ? lang : 'en';
     const root = document.documentElement;
@@ -261,6 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
       langToggleBtn.setAttribute('lang', currentLang === 'ar' ? 'en' : 'ar');
     }
 
+    splitTitles();
     restartTypewriter();
   }
 
@@ -489,7 +521,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!contactForm.checkValidity()) {
         if (formStatus) {
           formStatus.textContent = t('ui.formInvalid');
-          formStatus.style.color = '#f87171';
+          formStatus.dataset.state = 'error';
         }
         contactForm.reportValidity();
         return;
@@ -497,7 +529,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (formStatus) {
         formStatus.textContent = t('ui.formOk');
-        formStatus.style.color = 'var(--primary)';
+        formStatus.dataset.state = 'ok';
       }
 
       contactForm.reset();
@@ -505,20 +537,34 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* -------------------------------------------------------------
-     11. Ambient Cursor Tracker
+     11. Motion helpers: stagger, skill tags, timeline progress
   ------------------------------------------------------------- */
-  const cursorGlow = $('#cursorGlow');
+  $$('.skills-grid, .projects-grid, .services-grid').forEach(group => {
+    [...group.children].forEach((child, i) => child.style.setProperty('--d', `${(i % 3) * 70}ms`));
+  });
+  $$('.stagger').forEach(group => {
+    [...group.children].forEach((child, i) => child.style.setProperty('--i', i));
+  });
+  $$('.skill-card').forEach(card => {
+    $$('.tags span', card).forEach((tag, k) => tag.style.setProperty('--k', k));
+  });
 
-  if (cursorGlow && !prefersReduced) {
-    window.addEventListener(
-      'pointermove',
-      e => {
-        cursorGlow.style.left = `${e.clientX}px`;
-        cursorGlow.style.top = `${e.clientY}px`;
-      },
-      { passive: true }
-    );
+  const timelineEl = $('.timeline');
+  const timelineItems = $$('.timeline-item');
+  function updateTimeline() {
+    if (!timelineEl) return;
+    const rect = timelineEl.getBoundingClientRect();
+    const mark = window.innerHeight * 0.6;
+    const progress = Math.min(1, Math.max(0, (mark - rect.top) / rect.height));
+    timelineEl.style.setProperty('--tl', progress.toFixed(3));
+    timelineItems.forEach(item => {
+      item.classList.toggle('reached', item.getBoundingClientRect().top < mark);
+    });
   }
+  window.addEventListener('scroll', updateTimeline, { passive: true });
+  window.addEventListener('resize', updateTimeline);
+  updateTimeline();
+
   /* -------------------------------------------------------------
      12. Initial language (always English unless the link has ?lang=ar)
   ------------------------------------------------------------- */
