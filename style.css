@@ -610,7 +610,7 @@ main { counter-reset: sec; }
   .menu-open body { overflow: hidden; }
   .menu-open .site-header::before { opacity: 1; }
   .nav-links { flex-direction: column; align-items: stretch; gap: 0; }
-  .nav-link { padding: 12px 4px; font-family: var(--display); font-size: 19px; border-bottom: 1px solid var(--line); }
+  .nav-link { padding: 12px 4px; font-family: var(--display); font-size: 20px; border-bottom: 1px solid var(--line); }
   [dir="rtl"] .nav-link { font-family: var(--font); font-size: 17px; }
   .nav-link::after { display: none; }
   .nav-link.active { color: var(--accent-ink); }
