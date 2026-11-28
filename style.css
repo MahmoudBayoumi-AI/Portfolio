@@ -686,34 +686,6 @@ main { counter-reset: sec; overflow-x: clip; }
   .logo-text { display: none; }
 }
 
-/* Testimonials ------------------------------------------------------------ */
-.carousel-viewport { overflow: hidden; border-radius: var(--r-xl); border: 1px solid var(--line); background: var(--surface); }
-.carousel-track { display: flex; direction: ltr; transition: transform 800ms var(--ease); will-change: transform; }
-.testimonial-slide { flex: 0 0 100%; min-width: 0; }
-[dir="rtl"] .testimonial-card { direction: rtl; }
-.testimonial-card { position: relative; display: flex; flex-direction: column; gap: 32px; min-height: 340px; padding: 56px 56px 44px; }
-.quote-symbol { font-size: 28px; line-height: 1; color: var(--accent-ink); }
-.quote-body { flex: 1; max-width: 760px; font-family: var(--display); font-weight: 400; font-size: clamp(20px, 2.3vw, 28px); line-height: 1.45; color: var(--text); }
-[dir="rtl"] .quote-body { font-size: clamp(18px, 2vw, 24px); line-height: 1.9; font-weight: 400; }
-.person-info { display: flex; align-items: center; gap: 16px; padding-top: 24px; border-top: 1px solid var(--line); }
-.avatar-ring { display: grid; place-items: center; flex-shrink: 0; width: 52px; height: 52px; border-radius: 50%; border: 1.5px solid var(--accent-ink); color: var(--accent-ink); font-size: 14px; font-weight: 600; letter-spacing: 0.04em; }
-.person-details { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.person-details strong { font-weight: 500; font-size: 17px; color: var(--text); }
-.person-details small { font-size: 14px; color: var(--text-2); }
-.carousel-navigation { display: flex; direction: ltr; align-items: center; justify-content: space-between; gap: 20px; margin-top: 24px; }
-.carousel-bullets { display: flex; align-items: center; gap: 8px; }
-.bullet-dot { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 999px; background: var(--line-strong); cursor: pointer; transition: width var(--t-med) var(--ease), background var(--t-fast) var(--ease); }
-.bullet-dot.active { width: 28px; background: var(--accent-ink); }
-.nav-btn { display: grid; place-items: center; width: 48px; height: 48px; background: transparent; border: 1px solid var(--line-strong); border-radius: 50%; color: var(--text); cursor: pointer; font-size: 15px; transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease); }
-@media (hover: hover) { .nav-btn:hover { background: var(--accent); color: var(--on-accent); border-color: var(--accent); } }
-@media (max-width: 600px) {
-  .testimonial-card { min-height: 0; gap: 24px; padding: 32px 24px 28px; }
-  .quote-body { font-size: 18px; }
-  [dir="rtl"] .quote-body { font-size: 17px; }
-  .person-info { padding-top: 20px; }
-  .avatar-ring { width: 44px; height: 44px; font-size: 13px; }
-  .nav-btn { width: 44px; height: 44px; }
-}
 @media (max-width: 1300px) {
   .nav-menu.open .nav-link:nth-child(9) { animation-delay: 360ms; }
 }
