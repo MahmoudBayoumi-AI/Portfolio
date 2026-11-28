@@ -4,7 +4,7 @@
  * The same key is used in index.html as data-i18n="key".
  */
 window.I18N = {
-  en: {
+  "en": {
     "nav.home": "Home",
     "nav.about": "About",
     "nav.education": "Education",
@@ -152,10 +152,30 @@ window.I18N = {
     "ui.formFail": "Could not send your message. Please email mahmoud.bayoumi.ai@gmail.com directly.",
     "ui.langButton": "عربي",
     "ui.langTitle": "التبديل إلى العربية",
-    "ui.titles": ["Data Scientist", "Data Analyst", "ML Engineer", "Frontend Developer", "Aviation Data Specialist"]
+    "ui.titles": [
+      "Data Scientist",
+      "Data Analyst",
+      "ML Engineer",
+      "Frontend Developer",
+      "Aviation Data Specialist"
+    ],
+    "nav.testimonials": "Testimonials",
+    "test.label": "Recommendations",
+    "test.title": "What people <span class=\"tone\">say about my work</span>",
+    "test1.q": "“Mahmoud came in as a business analyst intern and picked things up fast. He built a Streamlit and Selenium tool that automated our market research, and put together Power BI dashboards on airline fleets and key contacts. His reports were clear and well organized, and they helped with planning and with evaluating ACMI opportunities.”",
+    "test1.n": "Bassem Ahmed",
+    "test1.s": "Operations Manager, Dream Liner Aviation",
+    "test2.q": "“Mahmoud was committed all through the AI program. He was comfortable with Python, Pandas, SQL Server and ETL, and his Power BI dashboards were clear. What I liked most is that he didn't stop at the analysis. He took his work to deployment with Streamlit and Hugging Face, and he's good at breaking a big problem into small steps.”",
+    "test2.n": "Mohammed Elbadry",
+    "test2.s": "Instructor, Instant Academy",
+    "test3.q": "“I worked with Mahmoud on collecting and analyzing the water-provision projects data from the Ehsan platform. He gave us a well-organized dataset and a clear report with the key numbers and charts, which helped us understand the reach, the number of beneficiaries and how fast projects get done. He kept to the deadline and was easy to work with.”",
+    "test3.n": "Mohammed Al-Olayani",
+    "test3.s": "Client, Ehsan Platform Data Projects",
+    "test4.q": "“Mahmoud built our website as a custom WordPress theme that works properly in both Arabic and English. He cared about speed and clean code, so no heavy page builders, and he optimized the images. He also set up simple Customizer settings and a one-click setup so our team can keep the site updated on their own.”",
+    "test4.n": "Dr. Mohammed Nizar Al-Mufleh",
+    "test4.s": "CEO, Penta Serve"
   },
-
-  ar: {
+  "ar": {
     "nav.home": "الرئيسية",
     "nav.about": "نبذة عني",
     "nav.education": "التعليم",
@@ -303,6 +323,27 @@ window.I18N = {
     "ui.formFail": "تعذّر إرسال رسالتك. راسلني مباشرة على mahmoud.bayoumi.ai@gmail.com",
     "ui.langButton": "EN",
     "ui.langTitle": "Switch to English",
-    "ui.titles": ["عالم بيانات", "محلل بيانات", "مهندس تعلم آلي", "مطوّر واجهات أمامية", "متخصص بيانات الطيران"]
+    "ui.titles": [
+      "عالم بيانات",
+      "محلل بيانات",
+      "مهندس تعلم آلي",
+      "مطوّر واجهات أمامية",
+      "متخصص بيانات الطيران"
+    ],
+    "nav.testimonials": "التوصيات",
+    "test.label": "التوصيات",
+    "test.title": "ماذا يقول الناس <span class=\"tone\">عن عملي</span>",
+    "test1.q": "“انضم محمود لفريقنا كمتدرب تحليل أعمال وتأقلم بسرعة. بنى تطبيقاً باستخدام Streamlit وSelenium لأتمتة أبحاث السوق، وصمّم لوحات Power BI لأساطيل شركات الطيران وجهات الاتصال المهمة. وكانت تقاريره واضحة ومرتبة وأفادتنا في التخطيط وتقييم فرص ACMI.”",
+    "test1.n": "باسم أحمد",
+    "test1.s": "مدير العمليات، دريم لاينر للطيران",
+    "test2.q": "“كان محمود ملتزماً طوال برنامج الذكاء الاصطناعي. كان متمكناً من Python وPandas وSQL Server وخطوط ETL، ولوحات Power BI التي عملها كانت واضحة. وأكثر ما لفت انتباهي أنه لم يتوقف عند التحليل، بل وصل بعمله إلى مرحلة النشر باستخدام Streamlit وHugging Face، ويجيد تقسيم المشكلة الكبيرة إلى خطوات صغيرة.”",
+    "test2.n": "محمد البدري",
+    "test2.s": "مدرب، أكاديمية إنستانت",
+    "test3.q": "“اشتغلت مع محمود على جمع وتحليل بيانات مشاريع سقيا الماء من منصة إحسان. سلّمنا ملف بيانات مرتباً وتقريراً واضحاً بالمؤشرات والرسوم البيانية، وساعدنا على فهم حجم الأثر وعدد المستفيدين وسرعة التنفيذ. التزم بالمواعيد وكان التواصل معه سهلاً.”",
+    "test3.n": "محمد العلياني",
+    "test3.s": "عميل، مشاريع بيانات منصة إحسان",
+    "test4.q": "“طوّر محمود موقع شركتنا كقالب ووردبريس مخصص يعمل بشكل سليم بالعربية والإنجليزية. اهتم بسرعة الموقع ونظافة الكود فلم يعتمد على أدوات بناء ثقيلة، وحسّن الصور، وجهّز لنا إعدادات تخصيص بسيطة وتثبيتاً بضغطة واحدة ليتمكن فريقنا من تحديث الموقع بنفسه.”",
+    "test4.n": "د. محمد نزار المفلح",
+    "test4.s": "الرئيس التنفيذي، Penta Serve"
   }
 };
